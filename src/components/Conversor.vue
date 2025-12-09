@@ -11,10 +11,10 @@
       
       <div>Valor dolar en $ : <input type="text" :value="valor3" @input="actualizarMultiplicador($event)" :disabled="autoActualizar" ><label><input type="checkbox" v-model="autoActualizar" @change="toggleAutoUpdate"> Actualizar automáticamente</label> <span v-if="lastUpdate" style="font-size: 0.9em; color: #666;">{{ lastUpdate }}</span><br></div>
 
-      <div>
-        Valor Convertido:
-        <span :style="{ color: colorTexto }">
-          {{ (isNumeric(valor2) && isNumeric(valor3)) ? (Number(valor2) * Number(valor3)).toFixed(2) : '-' }}
+      <div style="color: black;">
+        Valor Convertido: USD
+        <span style="color: black;">
+          {{ (isNumeric(valor2) && isNumeric(valor3)) ? (Number(valor2) / Number(valor3)).toFixed(2) : '-' }}
         </span>
       </div>
 
@@ -56,14 +56,6 @@ export default {
   // Propiedades computadas
   computed: 
     {
-    colorTexto() {
-      const num = Number(this.valor2);
-      if (isNaN(num)) return 'black'; // valor no numérico
-
-      if (num <= 0) return 'blue';
-      if (num > 0 && num < 15) return 'magenta';
-      return 'red';
-    }
   },
  
 
